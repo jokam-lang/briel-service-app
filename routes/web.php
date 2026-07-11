@@ -3,11 +3,13 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\PortfolioController;
+use App\Http\Controllers\PublicController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Public Routes
+Route::get('/', [PublicController::class, 'index'])->name('home');
+Route::get('/kategori/{slug}', [PublicController::class, 'category'])->name('category.show');
+Route::get('/portofolio', [PublicController::class, 'portfolio'])->name('portfolio.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
